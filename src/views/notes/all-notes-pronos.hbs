@@ -1,0 +1,50 @@
+<div style="background-image: url(/img/fondo5.png); background-size: cover; background-repeat: no-repeat;" >
+<br>
+<h1 style="text-align:center; font-size: 2.5vh; color:white" > {{nombre}}   {{apellido}} </h1>
+ <h1 style="text-align:center; font-size: 2.5vh; color:white"  >Bienvenido a la Fase de Grupos</h1> 
+<br>
+<h2 style="font-size:2.5vh; text-align:right; margin-right:10%; color:white">Su puntuación:  <b>   {{puntos}} </b></h2>
+<h2 style="font-size:2.5vh; text-align:right; margin-right:10%;color:white">estas Ubicado en la Posición: <b> {{posicion}}</b></h2>
+<br>
+<div style="width: 80%; text-align:center; margin-left:10%">
+
+
+
+{{#if notes}}
+
+  <table class="table table-bordered table-hover  table-striped-columns">
+    <thead>
+      <tr>
+       <th >GRUPO</th>
+        <th >FECHA</th>
+        <th colspan="2" >EQUIPO </th>
+        <th >RESULTADO</th>
+        <th colspan="2" >EQUIPO </th>
+        <th >RESULTADO</th>
+        <th >PUNTOS</th>
+        <th  >Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each notes}}
+        <tr>
+          <td >{{grupo}}</td>
+          <td >{{fecha}}</td>
+          <td ><img style="width:2rem"    src="{{mapa1}}" alt=""></td> 
+		  <td > {{equipo1}}</td>
+          <td >{{pronostico1}}</td>
+          <td ><img style="width:2rem" src="{{mapa2}}" alt=""></td> 
+		  <td >{{equipo2}}</td>
+          <td >{{pronostico2}}</td>
+          <td >{{puntos}}</td>
+
+          <td><a href="/notes/edit/{{_id}}"><i class="fas fa-pen-alt" style="color: black"></i></a></td>
+          
+        </tr>
+       {{/each}}
+    </tbody>
+  </table>
+{{/if}}
+</div>
+<br><br>
+</div>

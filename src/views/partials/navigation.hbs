@@ -1,0 +1,50 @@
+    <nav id="header" class="navbar navbar-expand-lg navbar-light "    >
+    <div class="container" style="align-items: flex-start;">
+        <a class="navbar-brand" href="/"><img style="width: 100%;"  src="/img/LuminovaPG.jpg" ></a>
+    </div>
+    <div  id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+
+
+        {{#if ini}}
+                 <li class="nav-item"><a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/grupos">Grupos</a></li>
+                 <li class="nav-item"><a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/sedes">Sedes</a></li>
+                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" style="color:black; font-size: 1.5vh" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"> Ingreso</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/signin">Ingresar</a>
+                        <a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/signup">Registrarse</a>
+                    </ul>
+                  </li>
+        {{else if pais}}
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" style="color:black; font-size: 1.5vh" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"> Pais</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/pais">Bolivia</a>
+                        <a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/pais1">Colombia</a>
+                        <a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/pais2">Ecuador</a>
+                        <a class="nav-link" style="color:black; font-size: 1.5vh"  href="/auth/pais3">Peru</a>
+                    </ul>
+                    </li>
+            {{else if tp}}
+                        <li class="nav-item"><a class="nav-link" style="color:black ; font-size: 1.5vh" href="/notes">Fase de Grupos</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color:black ; font-size: 1.5vh" href="/notesf">Final</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color:black ; font-size: 1.5vh" href="/auth/logout">Salir</a></li>
+                  {{else if ad}}
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" style="color:black" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"> PROCESOS</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes">Cargar Resultados</a>
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir">Reporte de resultados Bolivia</a>
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir2">Reporte de resultados Colombia</a>
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir3">Reporte de resultados Ecuador</a>
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir4">Reporte de resultados Peru</a>
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir1">Posicion de Jugadores Bolivia</a>
+                            <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir5">Posicion de Jugadores Colombia</a>
+                        <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir6">Posicion de Jugadores Ecuador</a>
+                        <a class="dropdown-item" style=" font-size: 1.5vh" href="/notes/imprimir7">Posicion de Jugadores Peru</a>
+                        <a class="dropdown-item"  style="font-size: 1.5vh" href="/auth/logout">Salir</a>
+                    </ul>
+                    </li>
+              {{/if}}
+      </ul>
+    </div>
+
+</nav>
