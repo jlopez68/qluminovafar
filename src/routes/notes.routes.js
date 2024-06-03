@@ -6,7 +6,13 @@ import {
   renderNotessf,
   renderNotesf,
   renderEditForm,
+  renderEditFormf,
   updateNote,
+  updateNotef,
+  updateNotef1,
+  updateNotef2,
+  NewNotef,
+
   deleteNote,
   imprimirNote,
   imprimirNote1,
@@ -33,11 +39,16 @@ router.get("/notesqf", isAuthenticated, renderNotesqf);
 router.get("/notessf", isAuthenticated, renderNotessf);
 router.get("/notesf", isAuthenticated, renderNotesf);
 
+
 // Edit Notes
 router.get("/notes/edit/:id", isAuthenticated, renderEditForm);
+router.get("/notes/edit-f/:id", isAuthenticated, renderEditFormf);
+router.put("/notes/new-note-f", isAuthenticated, NewNotef);
 
 router.put("/notes/edit-note/:id", isAuthenticated, updateNote);
-
+router.put("/notes/all-notes-f", isAuthenticated, updateNotef);
+router.put("/notes/note-edit-f/:id", isAuthenticated, updateNotef1);
+router.put("/notes/note-edit-f1/:id", isAuthenticated, updateNotef2);
 
 // Delete Notes
 router.delete("/notes/delete/:id", isAuthenticated, deleteNote);

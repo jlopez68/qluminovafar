@@ -11,20 +11,129 @@ export const renderNotesqf = async (req, res) => {
   res.render("notes/all-notes-qf", { nombre, tp});
 };
 
-export const renderNotesf = async (req, res) => {
-  const nombre = req.user.name;
-  const usua = req._id
-  const tp = true;
-
-  res.render("notes/all-notes-f", { nombre, tp});
-};
-
 export const renderNotessf = async (req, res) => {
   const nombre = req.user.name;
   const usua = req._id
   const tp = true;
 
+
   res.render("notes/all-notes-sf", { nombre, tp});
+};
+
+
+export const renderNotesf = async (req, res) => {
+  const nombre = req.user.name;
+  const usua = req._id
+  const tp = true;
+  const ad = false;
+  const pa = false
+  const ini = false
+  const email = req.user.email;
+  const punt = req.user.puntos;
+  const posicion = req.user.posicion;
+  const notes25 = await Note.find({email: email,fecha: "14/07/2024", numero:25,grupo: "FN"})
+  .sort({ date:"desc" })
+  .lean();
+
+  console.log(notes25);
+  if (!notes25){
+      res.render("notes/new-note-f")
+  }
+  else{
+  res.render("notes/all-notes-f", { notes25, nombre, punt, posicion, tp, ad, pa, ini} );
+  }
+
+};
+export const NewNotef = async (req, res) => {
+  const { equipo1, equipo2, pronostico1, pronostico2, eqgol} = req.body;
+  const tip = req.user.tipo_usuario;
+  const email = req.user.email;
+  const pais1 = req.user.pais;
+  const newjuego = new Note({pais:pais1, email: req.user.email, fecha: "14/07/2024", status_partido: "A", numero:25,grupo: "FN",equipo1: equipo1,equipo2: equipo2,resultado1: 0,resultado2: 0, puntos:0, pronostico1:pronostico1, pronostico2:pronostico2, equipogol:eqgol});
+  const juego = await newjuego.save();
+
+  const user = await Note.findOne({pais:pais1, email: email, grupo: "FN",fecha: '14/07/2024',equipo1: equipo1,equipo2: equipo2 }).lean();
+  const us25 = user._id
+  await Note.findOneAndUpdate({pais:pais1, email:req.user.email, grupo: "FN",fecha: '14/07/2024',equipo1: equipo1,equipo2: equipo2 }, { usuario: us25}) ;
+  req.flash("success_msg", "Juego Final Agregado");
+  return res.redirect("/notes");
+
+};
+
+export const renderEditFormf = async (req, res) => {
+  const nombre = req.user.name;
+  const usua = req._id
+  const tp = true;
+  const ad = false;
+  const pa = false
+  const ini = false
+  const email = req.user.email;
+  const punt = req.user.puntos;
+  const posicion = req.user.posicion;
+  const note = await Note.findOne({email: email,fecha: "14/07/2024", numero:25,grupo: "FN" }).lean();
+  console.log("id",req.params.id);
+  console.log("note",note);
+
+  res.render("notes/note-edit-f", { note, nombre, punt, posicion, tp, ad, pa, ini} );
+
+
+};
+export const updateNotef = async (req, res) => {
+  const { equipo1, equipo2, pronostico1, pronostico2, eqgol} = req.body;
+  const tip = req.user.tipo_usuario;
+  const email = req.user.email;
+  const pais1 = req.user.pais;
+  const notes1 = await Note.findOne({ email: email,fecha: "14/07/2024", numero:25,grupo: "FN"  });
+    if (!notes1) { 
+  const newjuego = new Note({pais:pais1, email: req.user.email, fecha: "14/07/2024", status_partido: "A", numero:25,grupo: "FN",equipo1: equipo1,equipo2: equipo2,resultado1: 0,resultado2: 0, puntos:0, pronostico1:pronostico1, pronostico2:pronostico2, equipogol:eqgol});
+  const juego = await newjuego.save();
+
+  const user = await Note.findOne({pais:pais1, email: email, grupo: "FN",fecha: '14/07/2024',equipo1: equipo1,equipo2: equipo2 }).lean();
+  const us25 = user._id
+  await Note.findOneAndUpdate({pais:pais1, email:req.user.email, grupo: "FN",fecha: '14/07/2024',equipo1: equipo1,equipo2: equipo2 }, { usuario: us25}) ;
+  req.flash("success_msg", "Juego Final Agregado");
+  return res.redirect("/notes");
+    }
+  
+};
+
+export const updateNotef1 = async (req, res) => {
+  const tip = req.user.tipo_usuario;
+  const email = req.user.email;
+  const pais1 = req.user.pais;
+    const notes1 = await Note.findOne({ email: email,fecha: "14/07/2024", numero:25,grupo: "FN", status_partido:"A"  });
+    if (notes1) {
+      const { equipo1,pronostico1,equipo2,pronostico2, eqgol  } = req.body;
+      await Note.findOneAndUpdate({ email: email,fecha: "14/07/2024", numero:25,grupo: "FN"  }, {equipo1: equipo1, pronostico1: pronostico1, equipo2: equipo2, pronostico2: pronostico2, puntos:0, equipogol:eqgol });
+      req.flash("success_msg", "Juego Final Modificado");
+      return res.redirect("/notes");
+     } 
+    else
+    {
+    req.flash("error_msg", "Juego ya Cerrado no se puede Modificar");
+    return res.redirect("/notes");
+  
+  }
+};
+
+
+export const updateNotef2 = async (req, res) => {
+  const tip = req.user.tipo_usuario;
+  const email = req.user.email;
+  const pais1 = req.user.pais;
+    const notes1 = await Note.findOne({ email: email,fecha: "14/07/2024", numero:25,grupo: "FN", status_partido:"A"  });
+    if (notes1) {
+      const { equipo1,pronostico1,equipo2,pronostico2, eqgol  } = req.body;
+      await Note.findOneAndUpdate({ email: email,fecha: "14/07/2024", numero:25,grupo: "FN"  }, {equipo1: equipo1, pronostico1: pronostico1, equipo2: equipo2, pronostico2: pronostico2, puntos:0, equipogol:eqgol });
+      req.flash("success_msg", "Juego Final Modificado");
+      return res.redirect("/notes");
+     } 
+    else
+    {
+    req.flash("error_msg", "Juego ya Cerrado no se puede Modificar");
+    return res.redirect("/notes");
+  
+  }
 };
 
 export const renderNotes = async (req, res) => {
