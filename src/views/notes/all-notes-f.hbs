@@ -10,7 +10,7 @@
 
       <br><br>      <br><br>      <br><br>      <br><br>
 
-{{#if notes25}}
+
 
   <table class="table table-bordered table-hover  table-striped-columns">
     <thead>
@@ -28,22 +28,21 @@
       </tr>
     </thead>
     <tbody>
-    {{#each notes25}}
+
       <tr>
-		  <td >{{equipo1}}</td>
-      <td >{{pronostico1}}</td>
-      <td >{{resultado1}}</td>
-		  <td >{{equipo2}}</td>
-      <td >{{pronostico2}}</td>
-      <td >{{resultado2}}</td>
-      <td >{{equipogol}}</td>
-      <td >{{puntos}}</td>
-      <td><a href="/notes/edit-f/{{_id}}"><i class="fas fa-pen-alt" style="color: black"></i></a></td>
+		  <td >{{notes26.equipo1}}</td>
+      <td >{{notes26.pronostico1}}</td>
+      <td >{{notes26.resultado1}}</td>
+		  <td >{{notes26.equipo2}}</td>
+      <td >{{notes26.pronostico2}}</td>
+      <td >{{notes26.resultado2}}</td>
+      <td >{{notes26.equipogol}}</td>
+      <td >{{notes26.puntos}}</td>
+      <td><a href="/notes/edit-f/{{notes26._id}}"><i class="fas fa-pen-alt" style="color: black"></i></a></td>
      </tr>
-    {{/each}}
+
    </tbody>
   </table>
-{{/if}}
 </div>
 <br><br>      <br><br>      <br><br>      <br><br>      <br><br>      <br><br>      <br><br>
 </div>

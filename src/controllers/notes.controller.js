@@ -31,16 +31,17 @@ export const renderNotesf = async (req, res) => {
   const email = req.user.email;
   const punt = req.user.puntos;
   const posicion = req.user.posicion;
-  const notes25 = await Note.find({email: email,fecha: "14/07/2024", numero:25,grupo: "FN"})
-  .sort({ date:"desc" })
-  .lean();
+  const notes25 = await Note.findOne({email: email,fecha: "14/07/2024", numero:25,grupo: "FN"});
 
-  console.log(notes25);
   if (!notes25){
       res.render("notes/new-note-f")
   }
   else{
-  res.render("notes/all-notes-f", { notes25, nombre, punt, posicion, tp, ad, pa, ini} );
+    console.log("note25",notes25);
+    const notes26 = await Note.findOne({email: email,fecha: "14/07/2024", numero:25,grupo: "FN"}).lean()
+    ;
+
+    res.render("notes/all-notes-f", { notes26, nombre, punt, posicion, tp, ad, pa, ini} ) ;
   }
 
 };
@@ -319,9 +320,10 @@ export const renderNotes = async (req, res) => {
       const puntos = req.user.puntos;
       const posicion = req.user.posicion;
       console.log("p",puntos)
-      const notes = await Note.find({pais:pais1, email: email})
+      const notes = await Note.find({pais:pais1, email: email, grupo:["A","B","C","D"]})
         .sort({ date:"desc" })
         .lean();
+      
          res.render("notes/all-notes-pronos", { notes, nombre, puntos, posicion, tp, ad, pa, ini} );
     }      
 } 
