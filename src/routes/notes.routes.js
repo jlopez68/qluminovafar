@@ -23,7 +23,8 @@ import {
   imprimirNote6,
   imprimirNote7,
 
-  renderVisualizarnotas
+  renderVisualizarnotas,
+  calcularposicion
 } from "../controllers/notes.controller.js";
 
 import { isAuthenticated } from "../helpers/auth.js";
@@ -35,6 +36,7 @@ const router = Router();
 
 // Get All Notes
 router.get("/notes", isAuthenticated, renderNotes);
+router.get("/notesb", isAuthenticated, calcularposicion);
 router.get("/notesqf", isAuthenticated, renderNotesqf);
 router.get("/notessf", isAuthenticated, renderNotessf);
 router.get("/notesf", isAuthenticated, renderNotesf);
