@@ -550,7 +550,11 @@ const notes100 = await User.findOne( {email:ver1}).lean();
 
 export const calcularposicion = async (req, res) => {
 
-  Usuario.find({tipo_usuario:"Jugador"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
+  Usuario.find({tipo_usuario:"Jugador", pais:"Ecuador"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
+  Usuario.find({tipo_usuario:"Jugador", pais:"Bolivia"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
+  Usuario.find({tipo_usuario:"Jugador", pais:"Colombia"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
+  Usuario.find({tipo_usuario:"Jugador", pais:"Peru"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
+  req.flash("success_msg", "Posicion Actualizada");
   res.redirect("/notes");     
   async function  posicion1 (err, _id) {
   
