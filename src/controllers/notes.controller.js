@@ -551,11 +551,9 @@ const notes100 = await User.findOne( {email:ver1}).lean();
 export const calcularposicion = async (req, res) => {
 
   Usuario.find({tipo_usuario:"Jugador", pais:"Ecuador"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
-  Usuario.find({tipo_usuario:"Jugador", pais:"Bolivia"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
-  Usuario.find({tipo_usuario:"Jugador", pais:"Colombia"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
-  Usuario.find({tipo_usuario:"Jugador", pais:"Peru"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion1);
-  req.flash("success_msg", "Posicion Actualizada");
+
   res.redirect("/notes");     
+
   async function  posicion1 (err, _id) {
   
    if(err) {
@@ -563,7 +561,7 @@ export const calcularposicion = async (req, res) => {
      console.log(err);
    }
    const ciclo = _id.length;
-   console.log("ciclo2",ciclo);
+   console.log("ecuador-ciclo2",ciclo);
     console.log(_id[0]);
    for (let step = 0; step < ciclo; step++) {
      // Runs 5 times, with values of step 0 through 4.
@@ -571,25 +569,124 @@ export const calcularposicion = async (req, res) => {
      let ver = JSON.stringify(_id[step]); 
      var ver1 = ver.slice(10,-2);
      
-  console.log(ver);
-  console.log(ver1);
+  /*console.log(ver);
+  console.log(ver1);*/
   const notes100 = await User.findOne( {email:ver1}).lean();
     const pos = step+1;   
-    console.log("pos1",pos);
-    console.log("email",notes100.email);
+    console.log("ecuador-pos1",pos);
+/*    console.log("email",notes100.email);*/
        
     const doc2 = await Usuario.updateOne({email: notes100.email},  {posicion:pos});
     if(err) {
       console.log("error");
       console.log(err);
     }
-    console.log("aca entre");
+
     
    }
   }
-  
-  };
+  Usuario.find({tipo_usuario:"Jugador", pais:"Bolivia"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion2);
 
+  async function  posicion2 (err, _id) {
+  
+    if(err) {
+      console.log("error");
+      console.log(err);
+    }
+    const ciclo = _id.length;
+    console.log("bolivia-ciclo2",ciclo);
+     console.log(_id[0]);
+    for (let step = 0; step < ciclo; step++) {
+      // Runs 5 times, with values of step 0 through 4.
+   //       console.log(_id.usuario[0])  
+      let ver = JSON.stringify(_id[step]); 
+      var ver1 = ver.slice(10,-2);
+      
+ /*  console.log(ver);
+   console.log(ver1);*/
+   const notes100 = await User.findOne( {email:ver1}).lean();
+     const pos = step+1;   
+     console.log("bolivia-pos1",pos);
+/*     console.log("email",notes100.email);*/
+        
+     const doc2 = await Usuario.updateOne({email: notes100.email},  {posicion:pos});
+     if(err) {
+       console.log("error");
+       console.log(err);
+     }
+
+     
+    }
+   }
+   Usuario.find({tipo_usuario:"Jugador", pais:"Colombia"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion3);
+
+
+   async function  posicion3 (err, _id) {
+  
+    if(err) {
+      console.log("error");
+      console.log(err);
+    }
+    const ciclo = _id.length;
+    console.log("colombia-ciclo2",ciclo);
+     console.log(_id[0]);
+    for (let step = 0; step < ciclo; step++) {
+      // Runs 5 times, with values of step 0 through 4.
+   //       console.log(_id.usuario[0])  
+      let ver = JSON.stringify(_id[step]); 
+      var ver1 = ver.slice(10,-2);
+      
+   console.log(ver);
+   console.log(ver1);
+   const notes100 = await User.findOne( {email:ver1}).lean();
+     const pos = step+1;   
+     console.log("colombia-pos1",pos);
+/*     console.log("email",notes100.email);*/
+        
+     const doc2 = await Usuario.updateOne({email: notes100.email},  {posicion:pos});
+     if(err) {
+       console.log("error");
+       console.log(err);
+     }
+
+     
+    }
+   }
+   Usuario.find({tipo_usuario:"Jugador", pais:"Peru"},{_id:0,email:1}).sort({ puntos: "desc" }).lean().exec(posicion4);
+   req.flash("success_msg", "Posicion Actualizada");
+   async function  posicion4 (err, _id) {
+  
+    if(err) {
+      console.log("error");
+      console.log(err);
+    }
+    const ciclo = _id.length;
+    console.log("peru-ciclo2",ciclo);
+     console.log(_id[0]);
+    for (let step = 0; step < ciclo; step++) {
+      // Runs 5 times, with values of step 0 through 4.
+   //       console.log(_id.usuario[0])  
+      let ver = JSON.stringify(_id[step]); 
+      var ver1 = ver.slice(10,-2);
+     /* 
+   console.log(ver);
+   console.log(ver1);*/
+   const notes100 = await User.findOne( {email:ver1}).lean();
+     const pos = step+1;   
+     console.log("peru-pos1",pos);
+ /*    console.log("email",notes100.email);*/
+        
+     const doc2 = await Usuario.updateOne({email: notes100.email},  {posicion:pos});
+     if(err) {
+       console.log("error");
+       console.log(err);
+     }
+
+     
+    }
+   }
+ 
+  };
 
 
 export const deleteNote = async (req, res) => {
